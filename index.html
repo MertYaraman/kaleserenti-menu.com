@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kale Serenti Menü</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="background-decor">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+
+    <!-- Swipe indicator hint -->
+    <div class="swipe-hint" id="swipe-hint">
+        <div class="hand-icon">👆</div>
+        <p>Sayfayı Çevirin</p>
+    </div>
+
+    <div class="app-container">
+        <!-- The Book Container -->
+        <div id="book-container">
+            <!-- Pages will be dynamically generated here -->
+        </div>
+    </div>
+
+    <!-- StPageFlip Library -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+    
+    <!-- Data and logic scripts -->
+    <script src="menu-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

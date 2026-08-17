@@ -1,0 +1,263 @@
+:root {
+    --primary-color: #ff7e5f;
+    --secondary-color: #feb47b;
+    --bg-color: #2d3436;
+    --page-bg: #fffcf8;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    overflow: hidden; /* Prevent scrolling, we swipe instead */
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Background Decorations */
+.background-decor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.4;
+}
+
+.circle-1 {
+    width: 350px;
+    height: 350px;
+    background: var(--primary-color);
+    top: -50px;
+    right: -100px;
+}
+
+.circle-2 {
+    width: 450px;
+    height: 450px;
+    background: var(--secondary-color);
+    bottom: -150px;
+    left: -150px;
+}
+
+.app-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Book Container */
+#book-container {
+    width: 100%;
+    height: 100%;
+    box-shadow: var(--shadow);
+}
+
+/* Common Page Styles */
+.page {
+    background-color: var(--page-bg);
+    overflow: hidden;
+    position: relative;
+    /* subtle paper texture effect */
+    background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100" height="100" filter="url(%23noise)" opacity="0.04"/%3E%3C/svg%3E');
+}
+
+.page-content {
+    width: 100%;
+    height: 100%;
+    padding: 15px 15px; /* Azaltıldı */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+.page-content::-webkit-scrollbar { display: none; }
+
+/* Cover Page */
+.cover-page {
+    position: relative;
+    background: linear-gradient(135deg, #2d3436, #636e72);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    z-index: 1;
+}
+
+/* Hiçbir yeri kesilmeyen tam boyutlu ana resim */
+.cover-page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('images/cover.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4; /* Şeffaflık */
+    z-index: -1;
+}
+
+.cover-page h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.cover-page p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.logo-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* Category Pages */
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px; /* Azaltıldı */
+    padding-bottom: 10px; /* Azaltıldı */
+    border-bottom: 2px dashed rgba(0,0,0,0.1);
+}
+
+.category-header h2 {
+    font-size: 1.6rem; /* Biraz küçültüldü */
+    color: var(--primary-color);
+}
+
+.menu-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; /* Azaltıldı */
+    padding-bottom: 15px; /* Azaltıldı */
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: white;
+    padding: 10px 6px; /* Azaltıldı */
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.item-img {
+    width: 100%;
+    height: 120px;
+    border-radius: 12px;
+    object-fit: cover; /* Yemekler (Tost, Kahve vb.) büyük ve eşit görünür */
+    object-position: center;
+    background-color: transparent;
+    margin-bottom: 6px;
+}
+
+/* Şişeli ve uzun içecekler kesilmesin diye sadece onlara özel contain ayarı */
+img[src*="kola"], 
+img[src*="soda"], 
+img[src*="ayran"], 
+img[src*="Limonata"], 
+img[src*="su"], 
+img[src*="Limonlu"] {
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item-details h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-main);
+    line-height: 1.2;
+}
+
+.item-price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Swipe Hint */
+.swipe-hint {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    animation: fadeInOut 2s infinite;
+    pointer-events: none;
+}
+
+.hand-icon {
+    font-size: 2rem;
+    animation: swipeLeftRight 2s infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes swipeLeftRight {
+    0% { transform: translateX(10px) rotate(-10deg); }
+    50% { transform: translateX(-10px) rotate(10deg); }
+    100% { transform: translateX(10px) rotate(-10deg); }
+}
+
+.page-number {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 0.9rem;
+    color: #a4b0be;
+    font-weight: 600;
+}
